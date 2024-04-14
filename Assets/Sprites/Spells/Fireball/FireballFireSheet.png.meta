@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a7d5c823945f8eb47874e71d640ed0ae
+guid: 0439efbb608ba8e4baf72b8facd2be32
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -123,127 +123,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Run-Sheet_0
+      name: FireballFireSheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 64
-        height: 34
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5294118}
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f7c170fb1813aa446b3a2b714e6628c3
-      internalID: 613982376
+      spriteID: a6c2203ff1c20d743b4ff410e427cdb6
+      internalID: 581536556
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run-Sheet_1
+      name: FireballFireSheet_1
       rect:
         serializedVersion: 2
         x: 64
         y: 0
         width: 64
-        height: 34
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5294118}
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fd811c26702f6574e86fa130b8d72893
-      internalID: -188241335
+      spriteID: 17848ea7ce2b36446ae09631c75bc00e
+      internalID: -427448957
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run-Sheet_2
+      name: FireballFireSheet_2
       rect:
         serializedVersion: 2
         x: 128
         y: 0
         width: 64
-        height: 34
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5294118}
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 56db8cacb601e944facd53e00a412c17
-      internalID: -912299735
+      spriteID: 3d6e6f3330ce9104d96d0322df4704a4
+      internalID: -1564226664
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run-Sheet_3
+      name: FireballFireSheet_3
       rect:
         serializedVersion: 2
         x: 192
         y: 0
         width: 64
-        height: 34
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5294118}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4480e483d6a4825428d79a6b7afdb2de
-      internalID: -1096033860
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Run-Sheet_4
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 64
-        height: 34
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5294118}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e44d8137de8e38b4181ffc940f7c0633
-      internalID: -1475069386
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Run-Sheet_5
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 0
-        width: 64
-        height: 34
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 561067c3ac92aa94691c3a708a3218ce
-      internalID: 1420422157
+      spriteID: 43a3cd2ef437c594bbc33fbe278f0104
+      internalID: -1705909834
       vertices: []
       indices: 
       edges: []
@@ -259,12 +217,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Run-Sheet_0: 613982376
-      Run-Sheet_1: -188241335
-      Run-Sheet_2: -912299735
-      Run-Sheet_3: -1096033860
-      Run-Sheet_4: -1475069386
-      Run-Sheet_5: 1420422157
+      FireballFireSheet_0: 581536556
+      FireballFireSheet_1: -427448957
+      FireballFireSheet_2: -1564226664
+      FireballFireSheet_3: -1705909834
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
