@@ -8,8 +8,8 @@ public class Projectile : MonoBehaviour
     public float speed;
     public Vector2 direction;
     public string targetTag;
-    public float power;
-    public bool[] statusArray;
+    public Spell spell;
+
 
     private Animator animator;
     private Rigidbody2D rb;
@@ -20,6 +20,7 @@ public class Projectile : MonoBehaviour
         rb.velocity = direction * speed;
         transform.eulerAngles = new Vector3(0f, 0f, Vector2.SignedAngle(Vector2.right, direction));
         animator = GetComponent<Animator>();
+        animator.runtimeAnimatorController = spell.animationController;
         cc = GetComponent<CircleCollider2D>();
     }
 
@@ -29,7 +30,7 @@ public class Projectile : MonoBehaviour
             animator.SetBool("isHit", true); 
         }
         if(other.CompareTag(targetTag)){
-            other.SendMessage("TakeDamage", power);
+            other.SendMessage("TakeDamage", spell.power);
         }
     }
 

@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FireballFire
+  m_Name: Wind
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,13 +21,13 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 581536556, guid: 0439efbb608ba8e4baf72b8facd2be32, type: 3}
+      value: {fileID: 1081379669, guid: 7410fdcfed5170e48aa2066675c75376, type: 3}
     - time: 0.083333336
-      value: {fileID: -427448957, guid: 0439efbb608ba8e4baf72b8facd2be32, type: 3}
+      value: {fileID: -937278301, guid: 7410fdcfed5170e48aa2066675c75376, type: 3}
     - time: 0.16666667
-      value: {fileID: -1564226664, guid: 0439efbb608ba8e4baf72b8facd2be32, type: 3}
+      value: {fileID: -1355456613, guid: 7410fdcfed5170e48aa2066675c75376, type: 3}
     - time: 0.25
-      value: {fileID: -1705909834, guid: 0439efbb608ba8e4baf72b8facd2be32, type: 3}
+      value: {fileID: -1549745602, guid: 7410fdcfed5170e48aa2066675c75376, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -50,10 +50,10 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 581536556, guid: 0439efbb608ba8e4baf72b8facd2be32, type: 3}
-    - {fileID: -427448957, guid: 0439efbb608ba8e4baf72b8facd2be32, type: 3}
-    - {fileID: -1564226664, guid: 0439efbb608ba8e4baf72b8facd2be32, type: 3}
-    - {fileID: -1705909834, guid: 0439efbb608ba8e4baf72b8facd2be32, type: 3}
+    - {fileID: 1081379669, guid: 7410fdcfed5170e48aa2066675c75376, type: 3}
+    - {fileID: -937278301, guid: 7410fdcfed5170e48aa2066675c75376, type: 3}
+    - {fileID: -1355456613, guid: 7410fdcfed5170e48aa2066675c75376, type: 3}
+    - {fileID: -1549745602, guid: 7410fdcfed5170e48aa2066675c75376, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -83,13 +83,13 @@ AnimationClip:
     functionName: SetColliderRadius
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 0.15
+    floatParameter: 0.075
     intParameter: 0
     messageOptions: 0
   - time: 0
     functionName: SetColliderOffsetX
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 0.2
+    floatParameter: 0.35
     intParameter: 0
     messageOptions: 0

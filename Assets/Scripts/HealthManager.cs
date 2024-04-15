@@ -4,4 +4,8 @@ using UnityEngine;
 
 public class HealthManager : MonoBehaviour
 {
+    public float maxHealth = 100f;
+    public float currentHealth;
+    
+
 }

@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     public ManaManager manaManager;
     public Spell spell1;
     public Spell spell2;
+    public Spell defaultSpell;
 
     void Start(){
         rb = GetComponent<Rigidbody2D>();
@@ -58,11 +59,7 @@ public class PlayerController : MonoBehaviour
         if(Input.GetMouseButton(0)){
             if(canShoot){
                 canShoot = false;
-                Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                Vector2 direction = (mousePos - (Vector2)transform.position).normalized;
-                GameObject proj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-                proj.GetComponent<Projectile>().direction = direction;
-                proj.GetComponentInChildren<Projectile>().targetTag = "Enemy";
+                manaManager.AttemptSpell(defaultSpell);
                 Invoke(nameof(Reload), reloadTime);
             }
         }
@@ -86,12 +83,13 @@ public class PlayerController : MonoBehaviour
         else if(spell.spellType == "Explosion") CastExplosion(spell);
     }
     void CastProjectile(Spell spell){
-        GameObject proj = Instantiate(projectilePrefab);
+        GameObject proj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
         Projectile projectile = proj.GetComponent<Projectile>();
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 direction = (mousePos - (Vector2)transform.position).normalized;
+        projectile.spell = spell;
         projectile.direction = direction;
-        projectile.power = spell.power;
+        projectile.targetTag = "Enemy";
     }
 
     void CastExplosion(Spell spell){
