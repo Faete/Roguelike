@@ -26,6 +26,7 @@ public class Projectile : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other){
         if(other.CompareTag("Wall") || other.CompareTag(targetTag)){
+            GetComponent<CircleCollider2D>().enabled = false;
             rb.velocity = Vector2.zero;
             animator.SetBool("isHit", true); 
         }

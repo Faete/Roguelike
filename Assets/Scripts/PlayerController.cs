@@ -18,9 +18,6 @@ public class PlayerController : MonoBehaviour
     float reloadTime = 0.2f;
     bool canShoot = true;
 
-    float maxHealth = 10f;
-    public float health;
-
     public ManaManager manaManager;
     public Spell spell1;
     public Spell spell2;
@@ -67,15 +64,6 @@ public class PlayerController : MonoBehaviour
 
     void Reload(){
         canShoot = true;
-    }
-
-    void TakeDamage(float damage){
-        health -= damage;
-        if(health <= 0f) Die();
-    }
-
-    void Die(){
-        Destroy(gameObject);
     }
     
     void CastSpell(Spell spell){
