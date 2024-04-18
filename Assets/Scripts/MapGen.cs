@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Net.Http.Headers;
 using Unity.Collections;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -125,18 +127,30 @@ public class MapGen : MonoBehaviour
                 if(!verticalWallPositions.Contains(pos)) verticalWallPositions.Add(pos);
         }
 
-        foreach(Vector3 pos in horizontalWallPositions) Instantiate(
-            horizontalWallPrefab,
-            pos,
-            Quaternion.identity,
-            gridTransform
-        );
-        foreach(Vector3 pos in verticalWallPositions) Instantiate(
-            verticalWallPrefab,
-            pos,
-            Quaternion.identity,
-            gridTransform
-        );
+        foreach(Vector3 pos in horizontalWallPositions) {
+            GameObject hWall;
+            if(rooms.Exists(x => x.worldSpacePosition == pos - new Vector3(0f, 4f, 0f)) && rooms.Exists(x => x.worldSpacePosition == pos - new Vector3(0f, -5f, 0f)))
+                hWall = horizontalWallDoorPrefab;
+            else hWall = horizontalWallPrefab;
+            Instantiate(
+                hWall,
+                pos,
+                Quaternion.identity,
+                gridTransform
+            );
+        }
+        foreach(Vector3 pos in verticalWallPositions){
+            GameObject vWall;
+            if(rooms.Exists(x => x.worldSpacePosition == pos - new Vector3(9f, 0f, 0f)) && rooms.Exists(x => x.worldSpacePosition == pos- new Vector3(-8f, 0f, 0f)))
+                vWall = verticalWallDoorPrefab;
+            else vWall = verticalWallPrefab;
+            Instantiate(
+                vWall,
+                pos,
+                Quaternion.identity,
+                gridTransform
+            );
+        }
 
         GenerateCorners(horizontalWallPositions, verticalWallPositions);
     }
