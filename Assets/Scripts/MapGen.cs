@@ -63,12 +63,10 @@ public class MapGen : MonoBehaviour
         }
 
         // Check neighbors for each room
-        foreach(Room room in rooms){
-            foreach(string dir in directions){
+        foreach(Room room in rooms)
+            foreach(string dir in directions)
                 if(rooms.Exists(x => x.worldSpacePosition == room.worldSpacePosition + dirToWorld[dir]))
                     room.neighbors.Add(dir, rooms.Find(x => x.worldSpacePosition == room.worldSpacePosition + dirToWorld[dir]));
-            }
-        }
 
         // Generate Special rooms
         List<Room> validRooms = rooms.FindAll(x => x.roomTag != "Start");
@@ -84,6 +82,7 @@ public class MapGen : MonoBehaviour
         foreach(Room room in rooms){
             Instantiate(room.roomObject, room.worldSpacePosition, Quaternion.identity, gridTransform);
         }
+
         return rooms;
     }
 }
