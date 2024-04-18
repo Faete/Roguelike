@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http.Headers;
 using Unity.Collections;
 using UnityEngine;
@@ -12,13 +13,31 @@ public class MapGen : MonoBehaviour
     [SerializeField] GameObject fountainRoomPrefab;
     [SerializeField] GameObject upgradeRoomPrefab;
     [SerializeField] GameObject bossRoomPrefab;
+
+    [SerializeField] GameObject verticalWallPrefab;
+    [SerializeField] GameObject horizontalWallPrefab;
+    [SerializeField] GameObject horizontalWallDoorPrefab;
+    [SerializeField] GameObject verticalWallDoorPrefab;
+
+
+    [SerializeField] GameObject cornerDownRightPrefab;
+    [SerializeField] GameObject cornerDownLeftPrefab;
+    [SerializeField] GameObject cornerDownLeftRightPrefab;
+    [SerializeField] GameObject cornerUpRightPrefab;
+    [SerializeField] GameObject cornerUpLeftPrefab;
+    [SerializeField] GameObject cornerUpLeftRightPrefab;
+    [SerializeField] GameObject cornerUpDownLeftPrefab;
+    [SerializeField] GameObject cornerUpDownRightPrefab;
+    [SerializeField] GameObject cornerUpDownLeftRightPrefab;
+
     [SerializeField] Transform gridTransform;
 
-    [SerializeField] int numEnemyRooms;
+    public int numEnemyRooms;
     public List<Room> roomList;
 
     void Start(){
         roomList = GenerateRooms();
+        GenerateWalls(roomList);
     }
 
     List<Room> GenerateRooms(){
@@ -84,5 +103,77 @@ public class MapGen : MonoBehaviour
         }
 
         return rooms;
+    }
+
+    void GenerateWalls(List<Room> rooms){
+        List<Vector3> horizontalWallPositions = new List<Vector3>();
+        List<Vector3> verticalWallPositions = new List<Vector3>();
+        foreach(Room room in rooms){
+            Vector3[] vPos = {
+                room.worldSpacePosition + new Vector3(9f, 0f, 0f),
+                room.worldSpacePosition + new Vector3(-8f, 0f, 0f)
+            };
+
+            Vector3[] hPos = {
+                room.worldSpacePosition + new Vector3(0f, 4f, 0f),
+                room.worldSpacePosition + new Vector3(0f, -5f, 0f)
+            };
+
+            foreach(Vector3 pos in hPos)
+                if(!horizontalWallPositions.Contains(pos)) horizontalWallPositions.Add(pos);
+            foreach(Vector3 pos in vPos)
+                if(!verticalWallPositions.Contains(pos)) verticalWallPositions.Add(pos);
+        }
+
+        foreach(Vector3 pos in horizontalWallPositions) Instantiate(
+            horizontalWallPrefab,
+            pos,
+            Quaternion.identity,
+            gridTransform
+        );
+        foreach(Vector3 pos in verticalWallPositions) Instantiate(
+            verticalWallPrefab,
+            pos,
+            Quaternion.identity,
+            gridTransform
+        );
+
+        GenerateCorners(horizontalWallPositions, verticalWallPositions);
+    }
+
+    void GenerateCorners(List<Vector3> horizontalWallPositions, List<Vector3> verticalWallPositions){
+        List<Vector3> cornerPositions = new List<Vector3>();
+        foreach(Vector3 pos in horizontalWallPositions){
+            cornerPositions.Add(pos + new Vector3(9f, 0f, 0f));
+            cornerPositions.Add(pos + new Vector3(-8f, 0f, 0f));
+        }
+
+        cornerPositions = cornerPositions.Distinct().ToList();
+
+        foreach(Vector3 pos in cornerPositions){
+            Debug.Log(pos.ToString());
+            bool hasLeftWall = horizontalWallPositions.Contains(pos + new Vector3(8f, 0f, 0f));
+            bool hasRightWall = horizontalWallPositions.Contains(pos + new Vector3(-9f, 0f, 0f));
+            bool hasTopWall = verticalWallPositions.Contains(pos + new Vector3(0f, 5f, 0f));
+            bool hasBottomWall = verticalWallPositions.Contains(pos + new Vector3(0f, -4f, 0f));
+            GameObject cornerPrefab;
+            if(hasLeftWall && hasRightWall && hasTopWall && hasBottomWall) cornerPrefab = cornerUpDownLeftRightPrefab;
+            else if(hasLeftWall && hasRightWall && hasTopWall) cornerPrefab = cornerUpLeftRightPrefab;
+            else if(hasLeftWall && hasRightWall && hasBottomWall) cornerPrefab = cornerDownLeftRightPrefab;
+            else if(hasLeftWall && hasTopWall && hasBottomWall) cornerPrefab = cornerUpDownLeftPrefab;
+            else if(hasRightWall && hasBottomWall && hasTopWall) cornerPrefab = cornerUpDownRightPrefab;
+            else if(hasLeftWall && hasTopWall) cornerPrefab = cornerUpLeftPrefab;
+            else if(hasLeftWall && hasBottomWall) cornerPrefab = cornerDownLeftPrefab;
+            else if(hasRightWall && hasTopWall) cornerPrefab = cornerUpRightPrefab;
+            else if(hasRightWall && hasBottomWall) cornerPrefab = cornerDownRightPrefab;
+            else cornerPrefab = null;
+
+            if(cornerPrefab != null) Instantiate(
+                cornerPrefab,
+                pos,
+                Quaternion.identity,
+                gridTransform
+            );
+        }
     }
 }
