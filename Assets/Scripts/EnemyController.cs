@@ -16,6 +16,7 @@ public class EnemyController : MonoBehaviour
     Transform playerTransform;
 
     private AIPath aiPath;
+    private AIDestinationSetter aiDestinationSetter;
     private Rigidbody2D rb;
     private Animator animator;
 
@@ -27,8 +28,10 @@ public class EnemyController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         aiPath = GetComponent<AIPath>();
         animator = GetComponent<Animator>();
+        aiDestinationSetter = GetComponent<AIDestinationSetter>();
         aiPath.maxSpeed = moveSpeed;
         aiPath.endReachedDistance = attackRange;
+        aiDestinationSetter.target = playerTransform;
     }
 
     void Update(){
