@@ -21,6 +21,7 @@ public class RoomManager : MonoBehaviour
 
     void Update(){
         enemies.RemoveAll(x => x == null);
+        paths.RemoveAll(x => x == null);
         if(enemies.Count == 0) transform.GetChild(2).gameObject.SetActive(false);
     }
 
@@ -28,10 +29,10 @@ public class RoomManager : MonoBehaviour
         if(other.CompareTag("Player")){
             Camera.main.transform.position = transform.position;
             if(enemies.Count > 0){
-                foreach(EnemyController enemy in enemies) enemy.enabled = true;
-                foreach(AIPath path in paths) path.enabled = true;
-                door.SetActive(true);
                 if(!roomScanned){
+                    foreach(EnemyController enemy in enemies) enemy.enabled = true;
+                    foreach(AIPath path in paths) path.enabled = true;
+                    door.SetActive(true);
                     AstarPath.active.data.gridGraph.center = transform.position;
                     AstarPath.active.Scan();
                     roomScanned = true;

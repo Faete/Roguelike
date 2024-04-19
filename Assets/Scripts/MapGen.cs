@@ -4,7 +4,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Net.Http.Headers;
 using Unity.Collections;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -81,6 +80,7 @@ public class MapGen : MonoBehaviour
                 worldSpacePosition = newPos,
                 roomTag = "Enemy"
             });
+            currentRoom = rooms[Random.Range(0, rooms.Count)];
         }
 
         // Check neighbors for each room

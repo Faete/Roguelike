@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] GameObject explosionPrefab;
-    float reloadTime = 0.2f;
+    float reloadTime = 0.5f;
     bool canShoot = true;
 
     public ManaManager manaManager;
@@ -89,6 +89,14 @@ public class PlayerController : MonoBehaviour
     }
 
     void SpellFailed(){
+        return;
+    }
+
+    public void IncreaseAttackSpeed(){
+        reloadTime *= 0.9f;
+    }
+
+    void GainExp(float exp){
         return;
     }
 }

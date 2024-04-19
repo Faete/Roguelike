@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Microsoft.Unity.VisualStudio.Editor;
 using TMPro;
 using UnityEngine;
 
@@ -48,4 +47,7 @@ public class ManaManager : MonoBehaviour
         else currentMana = maxMana;
     }
 
+    public void IncreaseMaxMana(){
+        maxMana += 20f;
+    }
 }

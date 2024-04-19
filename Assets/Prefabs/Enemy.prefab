@@ -235,10 +235,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee624ed6d0c3fb948a7d299259c9803c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
+  enemy: {fileID: 0}
   moveSpeed: 4
   attackRange: 3
-  spell: {fileID: 11400000, guid: 2818d839c4aeedd4f8876cd2d9ed73cc, type: 2}
   projectilePrefab: {fileID: 8047936390991913122, guid: 2864e8259bf898c48ba5bf69d11a4734, type: 3}
   reloadTime: 0.5
 --- !u!61 &6101353509020631909

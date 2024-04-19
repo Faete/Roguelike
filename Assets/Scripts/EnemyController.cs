@@ -1,17 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.Callbacks;
 using UnityEngine;
 using Pathfinding;
 using System;
 
 public class EnemyController : MonoBehaviour
 {
-    public float health;
+    public Enemy enemy;
+    float health;
     public float moveSpeed = 2f;
     public float attackRange = 5f;
-    public Spell spell;
     public GameObject projectilePrefab;
     Transform playerTransform;
 
@@ -28,10 +27,14 @@ public class EnemyController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         aiPath = GetComponent<AIPath>();
         animator = GetComponent<Animator>();
+
         aiDestinationSetter = GetComponent<AIDestinationSetter>();
         aiPath.maxSpeed = moveSpeed;
         aiPath.endReachedDistance = attackRange;
         aiDestinationSetter.target = playerTransform;
+
+        health = enemy.health;
+        animator.runtimeAnimatorController = enemy.animationController;
     }
 
     void Update(){
@@ -47,6 +50,7 @@ public class EnemyController : MonoBehaviour
 
     void Die(){
         Destroy(gameObject);
+        playerTransform.SendMessage("GainExp", enemy.experienceGranted);
     }
 
     void AnimationControls(){
@@ -60,7 +64,7 @@ public class EnemyController : MonoBehaviour
             Vector2 direction = ((Vector2)playerTransform.position - (Vector2)transform.position).normalized;
             GameObject proj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
             Projectile projectile = proj.GetComponent<Projectile>();
-            projectile.spell = spell;
+            projectile.spell = enemy.spell;
             projectile.direction = direction;
             projectile.targetTag = "Player";
             Invoke(nameof(Reload), reloadTime);
