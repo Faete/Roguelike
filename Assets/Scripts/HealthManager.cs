@@ -38,8 +38,8 @@ public class HealthManager : MonoBehaviour
     }
 
     public void IncreaseMaxHealth(){
-        maxHealth += 20f;
-        Heal(20f);
+        maxHealth += 5f;
+        Heal(5f);
     }
 
     void HealToFull(){

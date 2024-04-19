@@ -11,6 +11,7 @@ public class Fountain : MonoBehaviour
     void Start(){
         sr = GetComponent<SpriteRenderer>();
     }
+
     void OnCollisionEnter2D(Collision2D other){
         if(!hasBeenUsed && other.transform.CompareTag("Player")){
             other.transform.SendMessage("HealToFull");

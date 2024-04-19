@@ -95,8 +95,4 @@ public class PlayerController : MonoBehaviour
     public void IncreaseAttackSpeed(){
         reloadTime *= 0.9f;
     }
-
-    void GainExp(float exp){
-        return;
-    }
 }

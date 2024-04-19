@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28a6d150828b75e40bc941594f2b5bc6, type: 3}
   m_Name: Skeleton
   m_EditorClassIdentifier: 
-  health: 0
-  spell: {fileID: 0}
-  experienceGranted: 0
-  animationController: {fileID: 0}
+  health: 10
+  spell: {fileID: 11400000, guid: 2818d839c4aeedd4f8876cd2d9ed73cc, type: 2}
+  experienceGranted: 2
+  animationController: {fileID: 9100000, guid: 476725f5f0de2b247b9dde4207085cae, type: 2}
