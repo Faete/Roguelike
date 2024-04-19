@@ -45,5 +45,4 @@ public class HealthManager : MonoBehaviour
     void HealToFull(){
         currentHealth = maxHealth;
     }
-
 }
