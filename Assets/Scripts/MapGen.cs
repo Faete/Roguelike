@@ -10,10 +10,11 @@ using UnityEngine.Tilemaps;
 public class MapGen : MonoBehaviour
 {
     [SerializeField] GameObject startingRoomPrefab;
-    [SerializeField] List<GameObject> enemyRoomPrefabs;
     [SerializeField] GameObject fountainRoomPrefab;
+    [SerializeField] GameObject exploredFountainRoomPrefab;
     [SerializeField] GameObject upgradeRoomPrefab;
     [SerializeField] GameObject bossRoomPrefab;
+    [SerializeField] GameObject escapeRoomPrefab;
 
     [SerializeField] GameObject verticalWallPrefab;
     [SerializeField] GameObject horizontalWallPrefab;
@@ -33,15 +34,9 @@ public class MapGen : MonoBehaviour
 
     [SerializeField] Transform gridTransform;
 
-    public int numEnemyRooms;
     public List<RoomMaker> roomList;
 
-    void Start(){
-        roomList = GenerateRooms();
-        GenerateWalls(roomList);
-    }
-
-    List<RoomMaker> GenerateRooms(){
+    public List<RoomMaker> GenerateRooms(int numEnemyRooms, List<GameObject> enemyRoomPrefabs, bool isFinalBoss){
         List<RoomMaker> rooms = new List<RoomMaker>();
 
         transform.position = Vector3.zero;
@@ -92,19 +87,29 @@ public class MapGen : MonoBehaviour
         // Generate Special rooms
         List<RoomMaker> validRooms = rooms.FindAll(x => x.roomTag != "Start");
         validRooms.Sort((x,y) => x.neighbors.Count.CompareTo(y.neighbors.Count));
-        validRooms[0].roomTag = "Boss";
-        validRooms[0].roomObject = bossRoomPrefab;
+        if(isFinalBoss){
+            validRooms[0].roomTag = "Boss";
+            validRooms[0].roomObject = bossRoomPrefab;
+        }else{
+            validRooms[0].roomTag = "Escape";
+            validRooms[0].roomObject = escapeRoomPrefab;
+        }
         validRooms[1].roomTag = "Upgrade";
         validRooms[1].roomObject = upgradeRoomPrefab;
         validRooms[2].roomTag = "Fountain";
         validRooms[2].roomObject = fountainRoomPrefab;
 
-        // Instantiate rooms
+        return rooms;
+    }
+
+    public void PlaceRooms(List<RoomMaker> rooms){
         foreach(RoomMaker room in rooms){
-            Instantiate(room.roomObject, room.worldSpacePosition, Quaternion.identity, gridTransform);
+            if(!room.isExplored) Instantiate(room.roomObject, room.worldSpacePosition, Quaternion.identity, gridTransform);
+            else if(room.roomTag == "Fountain") Instantiate(exploredFountainRoomPrefab, room.worldSpacePosition, Quaternion.identity, gridTransform);
+            else if(room.roomTag == "Enemy") Instantiate(startingRoomPrefab, room.worldSpacePosition, Quaternion.identity, gridTransform);
         }
 
-        return rooms;
+        GenerateWalls(rooms);
     }
 
     void GenerateWalls(List<RoomMaker> rooms){
@@ -188,5 +193,11 @@ public class MapGen : MonoBehaviour
                 gridTransform
             );
         }
+    }
+
+    public void CleanUp(){
+        List<GameObject> roomObjects = new List<GameObject>();
+        for(int i = 0; i < gridTransform.childCount; ++i) roomObjects.Add(gridTransform.GetChild(i).gameObject);
+        foreach(GameObject obj in roomObjects) Destroy(obj);
     }
 }
