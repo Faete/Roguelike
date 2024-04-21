@@ -14,7 +14,7 @@ public class Fountain : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other){
         if(!hasBeenUsed && other.transform.CompareTag("Player")){
-            other.transform.SendMessage("HealToFull");
+            other.transform.SendMessage("FullRestore");
             sr.sprite = emptySprite;
             hasBeenUsed = true;
         }

@@ -42,7 +42,7 @@ public class HealthManager : MonoBehaviour
         Heal(5f);
     }
 
-    void HealToFull(){
+    void FullRestore(){
         currentHealth = maxHealth;
     }
 }

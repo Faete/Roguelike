@@ -1570,7 +1570,7 @@ GameObject:
   - component: {fileID: -7449976560265236956}
   - component: {fileID: -4853153967877001730}
   m_Layer: 0
-  m_Name: ExploredFountainRoom
+  m_Name: ExploredSpecialRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class ManaManager : MonoBehaviour
 {
-    float maxMana = 100f;
+    float maxMana = 10;
     public float currentMana;
     float manaRegenTime = 1f;
     private float currentTime;
-    float manaRegenRate = 5f;
+    float manaRegenRate = 1f;
 
     public GameObject manaBar;
     public RectTransform manaBarImage;
@@ -48,6 +48,10 @@ public class ManaManager : MonoBehaviour
     }
 
     public void IncreaseMaxMana(){
-        maxMana += 20f;
+        maxMana += 5;
+    }
+
+    void FullRestore(){
+        currentMana = maxMana;
     }
 }
