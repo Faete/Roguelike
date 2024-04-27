@@ -1770,6 +1770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf13ce0ff3bbfde448e0b9c10138ed16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBossRoom: 0
 --- !u!61 &5058624600530646947
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1997,15 +1998,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 495779641635305533, guid: 21d06699f83b92146b767431e63ed6a0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.873294
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 495779641635305533, guid: 21d06699f83b92146b767431e63ed6a0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.96051186
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 495779641635305533, guid: 21d06699f83b92146b767431e63ed6a0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.028543985
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 495779641635305533, guid: 21d06699f83b92146b767431e63ed6a0, type: 3}
       propertyPath: m_LocalRotation.w

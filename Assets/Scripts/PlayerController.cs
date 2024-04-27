@@ -23,6 +23,11 @@ public class PlayerController : MonoBehaviour
     public Spell spell2;
     public Spell defaultSpell;
 
+    float spellPower = 1f;
+    float lifesteal = 0f;
+
+    [SerializeField] GameObject upgradePanel;
+
     void Start(){
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -76,6 +81,8 @@ public class PlayerController : MonoBehaviour
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 direction = (mousePos - (Vector2)transform.position).normalized;
         projectile.spell = spell;
+        projectile.lifesteal = lifesteal;
+        projectile.dmgMod = spellPower;
         projectile.direction = direction;
         projectile.targetTag = "Enemy";
     }
@@ -95,4 +102,23 @@ public class PlayerController : MonoBehaviour
     public void IncreaseAttackSpeed(){
         reloadTime *= 0.9f;
     }
+
+    public void IncreaseSpellPower(){
+        spellPower += 0.5f;
+        Time.timeScale = 1f;
+        upgradePanel.SetActive(false);
+    }
+
+    public void IncreaseLifesteal(){
+        lifesteal += 0.2f;
+        Time.timeScale = 1f;
+        upgradePanel.SetActive(false);
+    }
+
+    public void IncreateManaRegenRate(){
+        manaManager.IncreateManaRegenRate();
+        Time.timeScale = 1f;
+        upgradePanel.SetActive(false);
+    }
+
 }

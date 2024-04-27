@@ -51,6 +51,9 @@ public class ManaManager : MonoBehaviour
         maxMana += 5;
     }
 
+    public void IncreateManaRegenRate(){
+        manaRegenRate += 1f;
+    }
     void FullRestore(){
         currentMana = maxMana;
     }

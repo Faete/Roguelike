@@ -15,14 +15,14 @@ public class MapManager : MonoBehaviour
     void Start(){
         mapGen = GetComponent<MapGen>();
         currentLevel = 0;
-        rooms = mapGen.GenerateRooms(enemyRoomCounts[0], enemyRoomPrefabs[0].elements, currentLevel == maxLevel);
+        rooms = mapGen.GenerateRooms(enemyRoomCounts[0], enemyRoomPrefabs[0].elements, currentLevel == maxLevel - 1);
         mapGen.PlaceRooms(rooms);
     }
 
     public void NextLevel(){
         ++currentLevel;
         mapGen.CleanUp();
-        rooms = mapGen.GenerateRooms(enemyRoomCounts[currentLevel], enemyRoomPrefabs[currentLevel].elements, currentLevel == maxLevel);
+        rooms = mapGen.GenerateRooms(enemyRoomCounts[currentLevel], enemyRoomPrefabs[currentLevel].elements, currentLevel == maxLevel - 1);
         mapGen.PlaceRooms(rooms);
         playerTransform.position = Vector3.zero;
     }

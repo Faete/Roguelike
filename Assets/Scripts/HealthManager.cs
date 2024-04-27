@@ -11,6 +11,7 @@ public class HealthManager : MonoBehaviour
     public RectTransform healthBarImage;
     private float healthBarWidth;
 
+    [SerializeField] GameObject deathPanel;
 
     void Start(){
         currentHealth = maxHealth;
@@ -33,8 +34,9 @@ public class HealthManager : MonoBehaviour
     }
 
     void Die(){
-        Debug.Log("Dead");
-        currentHealth = maxHealth;
+        Time.timeScale = 0f;
+        healthBarImage.sizeDelta = Vector2.zero;
+        deathPanel.SetActive(true);
     }
 
     public void IncreaseMaxHealth(){

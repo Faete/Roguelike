@@ -8,6 +8,8 @@ public class Projectile : MonoBehaviour
     public Vector2 direction;
     public string targetTag;
     public Spell spell;
+    public float dmgMod = 1f;
+    public float lifesteal = 0f;
 
 
     private Animator animator;
@@ -30,7 +32,8 @@ public class Projectile : MonoBehaviour
             animator.SetBool("isHit", true); 
         }
         if(other.CompareTag(targetTag)){
-            other.SendMessage("TakeDamage", spell.power);
+            other.SendMessage("TakeDamage", spell.power * dmgMod);
+            FindObjectOfType<HealthManager>().Heal(spell.power * dmgMod * lifesteal);
         }
     }
 

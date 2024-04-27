@@ -18,6 +18,6 @@ MonoBehaviour:
   icon: {fileID: 0}
   spellType: Projectile
   projectileSpeed: 1
-  power: 5
+  power: 3
   manaCost: 5
   statusArray: 000000000000000000000000
