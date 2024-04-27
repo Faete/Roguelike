@@ -2310,7 +2310,6 @@ MonoBehaviour:
   spell2: {fileID: 11400000, guid: e9ef23f5aed83734c82ffc37aa8b58df, type: 2}
   defaultSpell: {fileID: 11400000, guid: 2818d839c4aeedd4f8876cd2d9ed73cc, type: 2}
   upgradePanel: {fileID: 1600521550}
-  deathPanel: {fileID: 0}
 --- !u!212 &1573732990
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2456,7 +2455,7 @@ MonoBehaviour:
   currentHealth: 0
   healthBar: {fileID: 1312137182}
   healthBarImage: {fileID: 0}
-  deathPanel: {fileID: 0}
+  deathPanel: {fileID: 597173017}
 --- !u!60 &1573732999
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -3866,9 +3865,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1573732987}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: IncreateManaRegenRate
+      - m_Target: {fileID: 1946785488}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: MainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
