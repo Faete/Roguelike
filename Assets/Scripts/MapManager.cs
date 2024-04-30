@@ -11,7 +11,7 @@ public class MapManager : MonoBehaviour
     [SerializeField] List<GameObjectList> enemyRoomPrefabs;
     [SerializeField] List<int> enemyRoomCounts;
     [SerializeField] Transform playerTransform;
-    public List<RoomMaker> rooms;
+    public List<Room> rooms;
     public Savedata savedata;
 
     void Start(){

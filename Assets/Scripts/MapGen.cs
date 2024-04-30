@@ -34,10 +34,10 @@ public class MapGen : MonoBehaviour
 
     [SerializeField] Transform gridTransform;
 
-    public List<RoomMaker> roomList;
+    public List<Room> roomList;
 
-    public List<RoomMaker> GenerateRooms(int numEnemyRooms, List<GameObject> enemyRoomPrefabs, bool isFinalBoss){
-        List<RoomMaker> rooms = new List<RoomMaker>();
+    public List<Room> GenerateRooms(int numEnemyRooms, List<GameObject> enemyRoomPrefabs, bool isFinalBoss){
+        List<Room> rooms = new List<Room>();
 
         transform.position = Vector3.zero;
         string[] directions = {"Up", "Down", "Left", "Right"};
@@ -55,14 +55,14 @@ public class MapGen : MonoBehaviour
         };
 
         // Starting room
-        rooms.Add(new RoomMaker{
+        rooms.Add(new Room{
             roomObject = startingRoomPrefab,
             worldSpacePosition = new Vector3(0f, 0f, 0f),
             roomTag = "Start"
         });
 
         // Generate rest of rooms
-        RoomMaker currentRoom = rooms[0];
+        Room currentRoom = rooms[0];
         while(rooms.Count < numEnemyRooms + 4){
             string dir = directions[Random.Range(0, 4)];
             Vector3 newPos = currentRoom.worldSpacePosition + dirToWorld[dir];
@@ -70,7 +70,7 @@ public class MapGen : MonoBehaviour
                 currentRoom = rooms.Find(x => x.worldSpacePosition == newPos);
                 continue;
             }
-            rooms.Add(new RoomMaker{
+            rooms.Add(new Room{
                 roomObject = enemyRoomPrefabs[Random.Range(0, enemyRoomPrefabs.Count)],
                 worldSpacePosition = newPos,
                 roomTag = "Enemy"
@@ -79,13 +79,13 @@ public class MapGen : MonoBehaviour
         }
 
         // Check neighbors for each room
-        foreach(RoomMaker room in rooms)
+        foreach(Room room in rooms)
             foreach(string dir in directions)
                 if(rooms.Exists(x => x.worldSpacePosition == room.worldSpacePosition + dirToWorld[dir]))
                     room.neighbors.Add(dir, rooms.Find(x => x.worldSpacePosition == room.worldSpacePosition + dirToWorld[dir]));
 
         // Generate Special rooms
-        List<RoomMaker> validRooms = rooms.FindAll(x => x.roomTag != "Start");
+        List<Room> validRooms = rooms.FindAll(x => x.roomTag != "Start");
         validRooms.Sort((x,y) => x.neighbors.Count.CompareTo(y.neighbors.Count));
         if(isFinalBoss){
             validRooms[0].roomTag = "Boss";
@@ -102,8 +102,8 @@ public class MapGen : MonoBehaviour
         return rooms;
     }
 
-    public void PlaceRooms(List<RoomMaker> rooms){
-        foreach(RoomMaker room in rooms){
+    public void PlaceRooms(List<Room> rooms){
+        foreach(Room room in rooms){
             if(!room.isExplored) Instantiate(room.roomObject, room.worldSpacePosition, Quaternion.identity, gridTransform);
             else if(room.roomTag == "Fountain") Instantiate(exploredFountainRoomPrefab, room.worldSpacePosition, Quaternion.identity, gridTransform);
             else if(room.roomTag == "Enemy") Instantiate(startingRoomPrefab, room.worldSpacePosition, Quaternion.identity, gridTransform);
@@ -112,10 +112,10 @@ public class MapGen : MonoBehaviour
         GenerateWalls(rooms);
     }
 
-    void GenerateWalls(List<RoomMaker> rooms){
+    void GenerateWalls(List<Room> rooms){
         List<Vector3> horizontalWallPositions = new List<Vector3>();
         List<Vector3> verticalWallPositions = new List<Vector3>();
-        foreach(RoomMaker room in rooms){
+        foreach(Room room in rooms){
             Vector3[] vPos = {
                 room.worldSpacePosition + new Vector3(9f, 0f, 0f),
                 room.worldSpacePosition + new Vector3(-8f, 0f, 0f)
