@@ -26,6 +26,7 @@ public class BossController : MonoBehaviour
 
     private int phase = 0;
     [SerializeField] List<GameObject> turrets;
+    GameObject winPanel;
 
 
     void Start(){
@@ -41,6 +42,7 @@ public class BossController : MonoBehaviour
 
         health = enemy.health;
         animator.runtimeAnimatorController = enemy.animationController;
+        winPanel = FindObjectOfType<Canvas>().transform.GetChild(4).gameObject;
     }
 
     void Update(){
@@ -65,6 +67,8 @@ public class BossController : MonoBehaviour
 
     void Die(){
         Destroy(gameObject);
+        winPanel.SetActive(true);
+        Time.timeScale = 0f;
     }
 
     void AnimationControls(){

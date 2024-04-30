@@ -2913,6 +2913,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf13ce0ff3bbfde448e0b9c10138ed16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boss: {fileID: 3036936000721843743}
   isBossRoom: 1
 --- !u!61 &2853793923212299063
 BoxCollider2D:

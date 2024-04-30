@@ -19,6 +19,16 @@ public class HealthManager : MonoBehaviour
         healthBarWidth = healthBarImage.rect.width;
     }
 
+    public void Save(Savedata data){
+        data.health = currentHealth;
+        data.maxHealth = maxHealth;
+    }
+
+    public void Load(Savedata savedata){
+        currentHealth = savedata.health;
+        maxHealth = savedata.maxHealth;
+    }
+
     void Update(){
         healthBarImage.sizeDelta = new Vector2((currentHealth / maxHealth) * healthBarWidth, healthBarImage.rect.height);
     }

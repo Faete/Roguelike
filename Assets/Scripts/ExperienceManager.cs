@@ -18,21 +18,13 @@ public class ExperienceManager : MonoBehaviour
         }
     }
 
-    public void IncMana(){
-        transform.SendMessage("IncreaseMaxMana");
-        levelUpPanel.SetActive(false);
-        Time.timeScale = 1f;
+    void Save(Savedata savedata){
+        savedata.experience = currentExperience;
+        savedata.level = currentLevel;
     }
 
-    public void IncHealth(){
-        transform.SendMessage("IncreaseMaxHealth");
-        levelUpPanel.SetActive(false);
-        Time.timeScale = 1f;
-    }
-
-    public void IncAttackSpeed(){
-        transform.SendMessage("IncreaseAttackSpeed");
-        levelUpPanel.SetActive(false);
-        Time.timeScale = 1f;
+    void Load(Savedata savedata){
+        currentExperience = savedata.experience;
+        currentLevel = savedata.level;
     }
 }

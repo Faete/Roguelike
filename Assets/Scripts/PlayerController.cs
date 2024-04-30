@@ -19,20 +19,29 @@ public class PlayerController : MonoBehaviour
     bool canShoot = true;
 
     public ManaManager manaManager;
-    public Spell spell1;
+    public Spell fireBall;
     public Spell spell2;
     public Spell defaultSpell;
 
     float spellPower = 1f;
     float lifesteal = 0f;
 
-    [SerializeField] GameObject upgradePanel;
-
     void Start(){
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
 
+    void Save(Savedata savedata){
+        savedata.spellPower = spellPower;
+        savedata.lifesteal = lifesteal;
+        savedata.reloadTime = reloadTime;
+    }
+
+    void Load(Savedata savedata){
+        spellPower = savedata.spellPower;
+        lifesteal = savedata.lifesteal;
+        reloadTime = savedata.reloadTime;
+    }
     void FixedUpdate(){
         Movement();
     }
@@ -44,8 +53,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void Spellcasting(){
-        if(Input.GetKeyDown(KeyCode.Q)) manaManager.AttemptSpell(spell1);
-        if(Input.GetKeyDown(KeyCode.E)) manaManager.AttemptSpell(spell2);
+        if(Input.GetMouseButtonDown(1)) manaManager.AttemptSpell(fireBall);
     }
 
     void Movement(){
@@ -105,20 +113,14 @@ public class PlayerController : MonoBehaviour
 
     public void IncreaseSpellPower(){
         spellPower += 0.5f;
-        Time.timeScale = 1f;
-        upgradePanel.SetActive(false);
     }
 
     public void IncreaseLifesteal(){
         lifesteal += 0.2f;
-        Time.timeScale = 1f;
-        upgradePanel.SetActive(false);
     }
 
     public void IncreateManaRegenRate(){
-        manaManager.IncreateManaRegenRate();
-        Time.timeScale = 1f;
-        upgradePanel.SetActive(false);
+        manaManager.IncreaseManaRegenRate();
     }
 
 }
